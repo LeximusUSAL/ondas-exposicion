@@ -137,7 +137,7 @@
 
     .arc-inner {
       max-width: 1100px; margin: 0 auto; padding: 0 48px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
     }
 
     .arc-text {}
@@ -158,35 +158,70 @@
 
     .arc-body p + p { margin-top: 18px; }
 
-    .arc-steps { display: flex; flex-direction: column; gap: 0; }
+    /* Steps with connector line */
+    .arc-steps {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+
+    /* Vertical connecting line */
+    .arc-steps::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(201,168,76,0.25) 8%,
+        rgba(201,168,76,0.25) 92%,
+        transparent 100%
+      );
+    }
 
     .arc-step {
       display: flex; align-items: flex-start; gap: 20px;
-      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 18px 0 18px 0;
       cursor: default;
-      transition: background 0.2s ease;
+      position: relative;
     }
 
-    .arc-step:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
+    .arc-step-num-wrap {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; width: 22px; padding-top: 3px;
+    }
 
-    .arc-step:hover { background: rgba(201,168,76,0.03); }
+    .arc-step-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      border: 1px solid var(--gold);
+      background: var(--dark);
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .arc-step:hover .arc-step-dot { background: var(--gold); }
 
     .arc-step-num {
-      font-size: 9px; letter-spacing: 0.3em; color: var(--gold);
-      font-family: var(--sans); padding-top: 4px; flex-shrink: 0;
-      width: 28px;
+      font-size: 8px; letter-spacing: 0.3em; color: rgba(201,168,76,0.5);
+      font-family: var(--sans); margin-top: 5px;
     }
 
-    .arc-step-content {}
+    .arc-step-content { padding-bottom: 4px; }
 
     .arc-step-title {
-      font-family: var(--sans); font-size: 12px; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--white); margin-bottom: 4px;
+      font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white); margin-bottom: 6px;
     }
 
     .arc-step-desc {
-      font-family: var(--serif); font-size: 13px; line-height: 1.6;
-      color: var(--muted);
+      font-family: var(--serif); font-size: 13.5px; line-height: 1.65;
+      color: rgba(200,200,200,0.6);
+    }
+
+    .arc-step-link {
+      font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(201,168,76,0.45); margin-top: 4px; display: block;
+      font-family: var(--sans);
     }
 
     /* ── FAN / CAROUSEL SECTION ── */
@@ -485,66 +520,121 @@
     <div class="arc-text">
       <p class="arc-label reveal">El recorrido</p>
       <h2 class="arc-heading reveal reveal-delay-1">
-        De los espacios<br>invisibles al dibujo<br>visible
+        Un viaje por el sonido:<br>del espacio<br>a la imagen
       </h2>
       <span class="gold-line reveal reveal-delay-1"></span>
       <div class="arc-body reveal reveal-delay-2">
         <p>
-          Esta exposición sigue el camino del sonido: desde el lugar donde nace hasta
-          el ojo que lo imagina. Cada itinerario ilumina una parte de ese viaje que la
-          radio inauguró en los años veinte y que la revista <em>Ondas</em> documentó
-          semana tras semana con fotografías, ilustraciones, anuncios y viñetas.
+          Todo empieza en un lugar físico: el estudio de radio. Allí, dentro de
+          cuatro paredes con cortinas y un piano de cola, la música existe antes
+          de ser emitida. Ese espacio —invisible para el oyente— es el punto de
+          partida de esta exposición.
         </p>
         <p>
-          Seis miradas, seis momentos, un mismo hilo conductor: la música como experiencia
-          nueva, tecnológica, democrática y artística.
+          Del espacio pasamos al objeto que lo transforma: el <strong>micrófono</strong>.
+          Es él quien convierte la música en señal, quien decide qué entra y qué no
+          en la retransmisión. Sin micrófono, no hay radio.
+        </p>
+        <p>
+          La señal viaja. Y al llegar a su destino necesita recuperar forma sonora:
+          el <strong>altavoz</strong> —o los auriculares— la devuelven al aire, ahora
+          en el salón de una casa, en una playa inglesa, en el pasillo de un autobús.
+        </p>
+        <p>
+          Esa posibilidad de llegar a cualquier lugar es lo que convierte la radio
+          en un fenómeno <strong>democratizador</strong>: la música ya no es
+          privilegio de quien puede ir al teatro; llega al hospital, al Ártico,
+          al gallinero de París.
+        </p>
+        <p>
+          Pero el camino del sonido no es solo técnico: es también inventivo. Una
+          <strong>fiebre tecnológica</strong> sacude los años veinte y treinta, y
+          <em>Ondas</em> la documenta con entusiasmo: prototipos, curiosidades,
+          aparatos que anticipan el futuro.
+        </p>
+        <p>
+          El recorrido cierra con una pregunta: ¿cómo se <strong>ve</strong> la
+          música que solo se escucha? El dibujante Augusto Fernández Sastre responde
+          semana a semana en las páginas de <em>Ondas</em>, traduciendo óperas,
+          ballets y sinfonías al lenguaje visual de la vanguardia.
         </p>
       </div>
     </div>
 
     <div class="arc-steps">
+
       <div class="arc-step reveal">
-        <span class="arc-step-num">01</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">01</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Espacios invisibles</p>
-          <p class="arc-step-desc">Los estudios radiofónicos: el lugar donde la música se convierte en señal.</p>
+          <p class="arc-step-title">El espacio</p>
+          <p class="arc-step-desc">Estudios de radio españoles e internacionales: el lugar físico donde la música vive antes de ser emitida. Pianos de cola, atriles, micrófonos. El origen invisible del sonido radiofónico.</p>
+          <span class="arc-step-link">Espacios Invisibles →</span>
         </div>
       </div>
+
       <div class="arc-step reveal reveal-delay-1">
-        <span class="arc-step-num">02</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">02</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Captar el sonido</p>
-          <p class="arc-step-desc">El micrófono, mediador visible entre la voz, la música y el oyente.</p>
+          <p class="arc-step-title">La captura</p>
+          <p class="arc-step-desc">El micrófono convierte el sonido en señal. Acoge el flamenco y las canciones japonesas, al tenor y a la foca. Su logo identifica a la emisora. Es el primer mediador entre la música y el oyente.</p>
+          <span class="arc-step-link">Captar el sonido →</span>
         </div>
       </div>
+
       <div class="arc-step reveal reveal-delay-1">
-        <span class="arc-step-num">03</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">03</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Amplificar el sonido</p>
-          <p class="arc-step-desc">Altavoces y auriculares: los objetos que hicieron doméstica la nueva escucha.</p>
+          <p class="arc-step-title">La amplificación</p>
+          <p class="arc-step-desc">La señal llega al altavoz o a los auriculares, que devuelven el sonido al mundo. La tecnología de la escucha entra en el hogar, en la playa, en el cochecito de un bebé. El sonido toma cuerpo de nuevo.</p>
+          <span class="arc-step-link">Amplificar el sonido →</span>
         </div>
       </div>
+
       <div class="arc-step reveal reveal-delay-2">
-        <span class="arc-step-num">04</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">04</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Democratizar la escucha</p>
-          <p class="arc-step-desc">De las cuevas de Colorado al Ártico: la radio convierte la música en un derecho universal.</p>
+          <p class="arc-step-title">La escucha universal</p>
+          <p class="arc-step-desc">Porque el sonido puede llegar a cualquier parte, la radio democratiza la música. Una anciana en Nápoles, expedicionarios en Groenlandia, una familia inuit en el Ártico: todos escuchan el mismo concierto.</p>
+          <span class="arc-step-link">Democratizar la escucha →</span>
         </div>
       </div>
+
       <div class="arc-step reveal reveal-delay-2">
-        <span class="arc-step-num">05</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">05</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Inventar la escucha</p>
-          <p class="arc-step-desc">Del Pianorad al Theremin: la fiebre tecnológica de los primeros años de la radio.</p>
+          <p class="arc-step-title">La invención</p>
+          <p class="arc-step-desc">Esa misma fascinación por lo nuevo genera una fiebre de inventos: el Pianorad, el Theremin, el radio-barco, el Selenophone. <em>Ondas</em> los documenta todos, alimentando el asombro de sus lectores.</p>
+          <span class="arc-step-link">Inventar la escucha →</span>
         </div>
       </div>
+
       <div class="arc-step reveal reveal-delay-3">
-        <span class="arc-step-num">06</span>
+        <div class="arc-step-num-wrap">
+          <div class="arc-step-dot"></div>
+          <span class="arc-step-num">06</span>
+        </div>
         <div class="arc-step-content">
-          <p class="arc-step-title">Dibujar la música</p>
-          <p class="arc-step-desc">Augusto Fernández Sastre da ojos a lo que solo tenía sonido.</p>
+          <p class="arc-step-title">La imagen</p>
+          <p class="arc-step-desc">El recorrido cierra con una pregunta: ¿cómo se ve lo que solo se escucha? Augusto Fernández Sastre lo resuelve en cada número: sus ilustraciones dan forma visual a la música radiofónica, de Wagner a Stravinsky.</p>
+          <span class="arc-step-link">Dibujar la música →</span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
