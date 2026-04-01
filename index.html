@@ -228,16 +228,15 @@
       font-family: var(--sans);
     }
 
-    /* ── FAN / CAROUSEL SECTION ── */
+    /* ── ITINERARIOS GRID ── */
     #fan {
       background: var(--black);
-      padding: 96px 0 64px;
+      padding: 96px 48px 80px;
       border-top: 1px solid rgba(0,0,0,0.06);
-      overflow: hidden;
     }
 
     .fan-header {
-      text-align: center; padding: 0 48px 72px; max-width: 700px; margin: 0 auto;
+      text-align: center; padding: 0 0 56px; max-width: 700px; margin: 0 auto;
     }
 
     .fan-label { font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
@@ -247,187 +246,94 @@
       font-weight: 400; line-height: 1.15; color: var(--text);
     }
 
-    /* Carousel stage */
-    .fan-stage {
-      position: relative;
-      height: 580px;
-      display: flex; align-items: center; justify-content: center;
+    /* Grid de tarjetas rectas */
+    .fan-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
     }
 
-    .fan-track {
-      position: relative;
-      width: 100%; height: 100%;
-    }
-
-    /* Each card */
     .fan-card {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: min(520px, 82vw);
-      height: 520px;
-      margin-top: -260px;
-      margin-left: min(-260px, -41vw);
-      border-radius: 4px;
+      position: relative;
+      height: 380px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
-                  opacity   0.5s ease,
-                  z-index   0s;
-      will-change: transform;
+      background: #1a0f06;
     }
 
-    /* Position classes */
-    .fan-card.pos-active {
-      transform: translate(0, 0) rotate(0deg) scale(1);
-      z-index: 10;
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .fan-card.pos-prev1 {
-      transform: translate(-46%, 5%) rotate(-9deg) scale(0.82);
-      z-index: 7; opacity: 0.75;
-      pointer-events: all;
-    }
-
-    .fan-card.pos-prev2 {
-      transform: translate(-80%, 12%) rotate(-17deg) scale(0.66);
-      z-index: 4; opacity: 0.45;
-      pointer-events: all;
-    }
-
-    .fan-card.pos-prev3 {
-      transform: translate(-104%, 18%) rotate(-23deg) scale(0.55);
-      z-index: 2; opacity: 0.2;
-      pointer-events: none;
-    }
-
-    .fan-card.pos-next1 {
-      transform: translate(46%, 5%) rotate(9deg) scale(0.82);
-      z-index: 7; opacity: 0.75;
-      pointer-events: all;
-    }
-
-    .fan-card.pos-next2 {
-      transform: translate(80%, 12%) rotate(17deg) scale(0.66);
-      z-index: 4; opacity: 0.45;
-      pointer-events: all;
-    }
-
-    .fan-card.pos-next3 {
-      transform: translate(104%, 18%) rotate(23deg) scale(0.55);
-      z-index: 2; opacity: 0.2;
-      pointer-events: none;
-    }
-
-    .fan-card.pos-hidden {
-      transform: translate(130%, 25%) rotate(30deg) scale(0.4);
-      z-index: 0; opacity: 0;
-      pointer-events: none;
-    }
-
-    .fan-card.pos-hidden-left {
-      transform: translate(-130%, 25%) rotate(-30deg) scale(0.4);
-      z-index: 0; opacity: 0;
-      pointer-events: none;
-    }
-
-    /* Card image */
     .fan-card-bg {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      transition: transform 6s ease;
+      filter: grayscale(20%);
+      transition: transform 0.5s ease, filter 0.4s ease;
     }
 
-    .fan-card.pos-active:hover .fan-card-bg { transform: scale(1.04); }
+    .fan-card:hover .fan-card-bg { transform: scale(1.04); filter: grayscale(0%); }
 
     .fan-card-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         to top,
-        rgba(0,0,0,0.92) 0%,
-        rgba(0,0,0,0.55) 40%,
-        rgba(0,0,0,0.15) 100%
+        rgba(0,0,0,0.90) 0%,
+        rgba(0,0,0,0.45) 55%,
+        rgba(0,0,0,0.12) 100%
+      );
+      transition: background 0.4s ease;
+    }
+
+    .fan-card:hover .fan-card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.55) 65%,
+        rgba(0,0,0,0.2) 100%
       );
     }
 
+    .fan-card-num-only { display: none; }
+
     .fan-card-body {
       position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 32px 36px 36px;
+      padding: 24px 28px 28px;
     }
 
     .fan-card-num {
-      font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 10px;
+      font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold2);
+      margin-bottom: 8px;
     }
 
     .fan-card-title {
       font-family: var(--serif);
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-size: clamp(1.2rem, 2vw, 1.65rem);
       font-weight: 400; line-height: 1.2; color: var(--white);
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
 
     .fan-card-sub {
       font-family: var(--serif); font-size: 13px; line-height: 1.55;
-      color: rgba(232,232,232,0.65);
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
+      color: rgba(232,219,200,0.8);
+      max-height: 0; overflow: hidden; margin-top: 0;
+      transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.3s ease;
       opacity: 0;
     }
 
-    .fan-card.pos-active .fan-card-sub { max-height: 80px; opacity: 1; }
+    .fan-card:hover .fan-card-sub { max-height: 100px; opacity: 1; margin-top: 10px; }
 
     .fan-card-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      margin-top: 20px; padding: 11px 24px;
-      border: 1px solid var(--gold); color: var(--gold);
-      text-decoration: none; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-      transition: all 0.25s ease;
+      padding: 10px 22px; margin-top: 0;
+      border: 1px solid var(--gold2); color: var(--gold2);
+      text-decoration: none; font-family: var(--sans); font-size: 9px;
+      letter-spacing: 0.3em; text-transform: uppercase;
       max-height: 0; overflow: hidden; opacity: 0;
-      transition: max-height 0.4s ease 0.1s, opacity 0.4s ease 0.1s, background 0.25s, color 0.25s;
+      transition: max-height 0.35s ease 0.05s, opacity 0.35s ease 0.05s,
+                  margin-top 0.3s ease, background 0.25s, color 0.25s;
     }
 
-    .fan-card.pos-active .fan-card-cta { max-height: 60px; opacity: 1; }
-    .fan-card-cta:hover { background: var(--gold); color: var(--black); }
+    .fan-card:hover .fan-card-cta { max-height: 60px; opacity: 1; margin-top: 16px; }
+    .fan-card-cta:hover { background: var(--gold2); color: var(--white); }
     .fan-card-cta svg { width: 12px; height: 12px; }
-
-    /* Non-active card: show only number overlay */
-    .fan-card-num-only {
-      position: absolute; top: 24px; left: 28px;
-      font-family: var(--serif); font-size: 2.5rem; font-weight: 400;
-      color: rgba(255,255,255,0.25); line-height: 1;
-      transition: opacity 0.3s ease;
-    }
-
-    .fan-card.pos-active .fan-card-num-only { opacity: 0; }
-
-    /* Nav controls */
-    .fan-controls {
-      display: flex; align-items: center; justify-content: center;
-      gap: 32px; padding: 40px 0 0;
-    }
-
-    .fan-btn {
-      width: 48px; height: 48px; border-radius: 50%;
-      border: 1px solid rgba(145,65,14,0.35);
-      background: transparent; color: var(--gold);
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: all 0.25s ease;
-      font-size: 18px;
-    }
-
-    .fan-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
-
-    .fan-dots { display: flex; gap: 10px; align-items: center; }
-
-    .fan-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(0,0,0,0.2); cursor: pointer;
-      transition: all 0.3s ease; border: none; padding: 0;
-    }
-
-    .fan-dot.active { background: var(--gold); transform: scale(1.4); }
 
     /* ── FOOTER ── */
     footer {
@@ -470,58 +376,16 @@
       /* Arc section */
       .arc-inner { padding: 0 20px; gap: 36px; }
 
-      /* Fan stage: viewport-relative so cards never overflow on short devices */
-      .fan-stage { height: min(500px, 72vh); }
-      .fan-card  {
-        height: min(450px, 65vh);
-        /* margin-top = -(height/2): max() picks the less-negative value
-           which matches the min() branch that was chosen for height */
-        margin-top: max(-225px, -32.5vh);
-      }
-
-      /* Reduce body padding so content fits on narrow screens */
-      .fan-card-body { padding: 20px 18px 22px; }
-      .fan-card-title { font-size: 1.35rem; }
-      .fan-card-sub   { font-size: 12px; max-height: 64px; }
-
-      /* Reduce fan spread so adjacent tabs are more visible, not just slivers */
-      .fan-card.pos-prev1 {
-        transform: translate(-32%, 4%) rotate(-7deg) scale(0.78);
-        opacity: 0.72;
-      }
-      .fan-card.pos-prev2 {
-        transform: translate(-58%, 9%) rotate(-14deg) scale(0.6);
-        opacity: 0.28;
-      }
-      .fan-card.pos-prev3 {
-        transform: translate(-78%, 13%) rotate(-19deg) scale(0.48);
-        opacity: 0.08;
-      }
-      .fan-card.pos-next1 {
-        transform: translate(32%, 4%) rotate(7deg) scale(0.78);
-        opacity: 0.72;
-      }
-      .fan-card.pos-next2 {
-        transform: translate(58%, 9%) rotate(14deg) scale(0.6);
-        opacity: 0.28;
-      }
-      .fan-card.pos-next3 {
-        transform: translate(78%, 13%) rotate(19deg) scale(0.48);
-        opacity: 0.08;
-      }
-
       footer { flex-direction: column; }
     }
 
-    @media (max-width: 400px) {
-      .fan-stage { height: min(440px, 68vh); }
-      .fan-card  {
-        height: min(390px, 61vh);
-        margin-top: max(-195px, -30.5vh);
-      }
-      .fan-card-body  { padding: 16px 14px 18px; }
-      .fan-card-title { font-size: 1.18rem; }
-      .fan-card-sub   { font-size: 11.5px; max-height: 56px; }
+    @media (max-width: 900px) {
+      .fan-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .fan-grid { grid-template-columns: 1fr; }
+      .fan-card { height: 320px; }
     }
   </style>
 </head>
@@ -696,8 +560,7 @@
     <h2 class="fan-heading">Elige tu recorrido</h2>
   </div>
 
-  <div class="fan-stage">
-    <div class="fan-track" id="fanTrack">
+  <div class="fan-grid">
 
       <!-- Card 1 -->
       <div class="fan-card" data-index="0">
@@ -825,32 +688,7 @@
         </div>
       </div>
 
-    </div><!-- /fan-track -->
-  </div><!-- /fan-stage -->
-
-  <!-- Controls -->
-  <div class="fan-controls">
-    <button class="fan-btn" id="btnPrev" aria-label="Anterior">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M10 3L5 8l5 5"/>
-      </svg>
-    </button>
-
-    <div class="fan-dots" id="fanDots">
-      <button class="fan-dot active" data-idx="0"></button>
-      <button class="fan-dot" data-idx="1"></button>
-      <button class="fan-dot" data-idx="2"></button>
-      <button class="fan-dot" data-idx="3"></button>
-      <button class="fan-dot" data-idx="4"></button>
-      <button class="fan-dot" data-idx="5"></button>
-    </div>
-
-    <button class="fan-btn" id="btnNext" aria-label="Siguiente">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M6 3l5 5-5 5"/>
-      </svg>
-    </button>
-  </div>
+  </div><!-- /fan-grid -->
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -893,75 +731,6 @@
 </footer>
 
 <script>
-  /* ── Fan carousel ── */
-  const TOTAL = 6;
-  let active = 0;
-
-  const cards = Array.from(document.querySelectorAll('.fan-card'));
-  const dots  = Array.from(document.querySelectorAll('.fan-dot'));
-
-  const POS_CLASSES = ['pos-active','pos-prev1','pos-prev2','pos-prev3',
-                       'pos-next1','pos-next2','pos-next3',
-                       'pos-hidden','pos-hidden-left'];
-
-  function positionClass(diff) {
-    if (diff ===  0) return 'pos-active';
-    if (diff === -1) return 'pos-prev1';
-    if (diff === -2) return 'pos-prev2';
-    if (diff === -3) return 'pos-prev3';
-    if (diff ===  1) return 'pos-next1';
-    if (diff ===  2) return 'pos-next2';
-    if (diff ===  3) return 'pos-next3';
-    if (diff < -3)   return 'pos-hidden-left';
-    return 'pos-hidden';
-  }
-
-  function setActive(idx) {
-    active = ((idx % TOTAL) + TOTAL) % TOTAL;
-
-    cards.forEach((card, i) => {
-      POS_CLASSES.forEach(c => card.classList.remove(c));
-      let diff = i - active;
-      // Normalize for circular wrapping: prefer shortest path
-      if (diff >  TOTAL / 2) diff -= TOTAL;
-      if (diff < -TOTAL / 2) diff += TOTAL;
-      card.classList.add(positionClass(diff));
-    });
-
-    dots.forEach((d, i) => d.classList.toggle('active', i === active));
-  }
-
-  // Click card → bring to active
-  cards.forEach((card, i) => {
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('pos-active')) setActive(i);
-    });
-  });
-
-  // Dot navigation
-  dots.forEach((dot, i) => dot.addEventListener('click', () => setActive(i)));
-
-  // Arrow buttons
-  document.getElementById('btnPrev').addEventListener('click', () => setActive(active - 1));
-  document.getElementById('btnNext').addEventListener('click', () => setActive(active + 1));
-
-  // Keyboard
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  setActive(active - 1);
-    if (e.key === 'ArrowRight') setActive(active + 1);
-  });
-
-  // Touch swipe
-  let touchX = 0;
-  document.getElementById('fanTrack').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-  document.getElementById('fanTrack').addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) setActive(active + (dx < 0 ? 1 : -1));
-  });
-
-  // Init
-  setActive(0);
-
   /* ── Scroll reveal ── */
   const revealEls = document.querySelectorAll('.reveal');
   const observer  = new IntersectionObserver(
