@@ -4,20 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La música en Ondas · Exposición digital 1925–1939</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Kumbh+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black: #0a0a0a;
-      --dark:  #111111;
-      --card:  #161616;
-      --gold:  #c9a84c;
-      --gold2: #e8c97a;
-      --text:  #e8e8e8;
-      --muted: #888888;
+      --black: #e8dbc8;       /* crema – fondo principal */
+      --dark:  #ddd0b8;       /* crema oscurecida – secciones */
+      --card:  #f5ede0;       /* crema clara – tarjetas */
+      --gold:  #91410E;       /* marrón óxido – acento principal */
+      --gold2: #C85632;       /* terracota – hover */
+      --text:  #191919;       /* texto oscuro */
+      --muted: #848484;       /* texto atenuado */
       --white: #ffffff;
-      --serif: 'Georgia', 'Times New Roman', serif;
-      --sans:  'Helvetica Neue', Arial, sans-serif;
+      --serif: 'Jost', sans-serif;
+      --sans:  'Kumbh Sans', sans-serif;
     }
 
     html { scroll-behavior: smooth; }
@@ -28,7 +29,9 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 900;
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 36px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+      background: rgba(221,208,184,0.96);
+      border-bottom: 1px solid rgba(145,65,14,0.15);
+      backdrop-filter: blur(6px);
     }
     .nav-brand { display: flex; align-items: center; gap: 12px; }
     .nav-logo  { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
@@ -36,6 +39,7 @@
     .nav-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
 
     /* ── HERO ── */
+    /* El hero conserva fondo oscuro propio sobre las imágenes */
     #hero {
       position: relative;
       min-height: 100vh;
@@ -44,7 +48,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: var(--black);
+      background: #1a0f06;
     }
 
     .hero-bg-grid {
@@ -52,7 +56,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      opacity: 0.18;
+      opacity: 0.22;
       filter: saturate(0.4);
     }
 
@@ -63,7 +67,7 @@
 
     .hero-bg-overlay {
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.95) 75%);
+      background: radial-gradient(ellipse at center, rgba(20,10,4,0.2) 0%, rgba(20,10,4,0.93) 75%);
     }
 
     .hero-content {
@@ -73,7 +77,7 @@
     }
 
     .hero-eyebrow {
-      font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold);
+      font-size: 10px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold2);
       margin-bottom: 32px; opacity: 0;
       animation: fadeUp 0.8s ease 0.3s forwards;
     }
@@ -95,14 +99,14 @@
     }
 
     .hero-divider {
-      width: 48px; height: 1px; background: var(--gold);
+      width: 48px; height: 1px; background: var(--gold2);
       margin: 0 auto 40px; opacity: 0;
       animation: fadeUp 0.8s ease 0.8s forwards;
     }
 
     .hero-intro {
       font-family: var(--serif); font-size: 17px; line-height: 1.9;
-      color: rgba(232,232,232,0.8); max-width: 640px; margin: 0 auto 56px;
+      color: rgba(232,219,200,0.85); max-width: 640px; margin: 0 auto 56px;
       opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
     }
 
@@ -114,7 +118,7 @@
 
     .hero-down-line {
       width: 1px; height: 48px;
-      background: linear-gradient(to bottom, transparent, var(--gold));
+      background: linear-gradient(to bottom, transparent, var(--gold2));
       animation: scrollLine 2s ease-in-out infinite 1.5s;
     }
 
@@ -132,7 +136,7 @@
     #arc {
       background: var(--dark);
       padding: 96px 0;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(0,0,0,0.06);
     }
 
     .arc-inner {
@@ -142,18 +146,18 @@
 
     .arc-text {}
 
-    .arc-label { font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; opacity: 0.8; }
+    .arc-label { font-size: 9px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; opacity: 0.9; }
 
     .arc-heading {
       font-family: var(--serif);
       font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 400; line-height: 1.15; color: var(--white);
+      font-weight: 400; line-height: 1.15; color: var(--text);
       margin-bottom: 32px;
     }
 
     .arc-body {
       font-family: var(--serif); font-size: 15.5px; line-height: 1.9;
-      color: rgba(232,232,232,0.72);
+      color: rgba(25,25,25,0.72);
     }
 
     .arc-body p + p { margin-top: 18px; }
@@ -172,8 +176,8 @@
       width: 1px;
       background: linear-gradient(to bottom,
         transparent 0%,
-        rgba(201,168,76,0.25) 8%,
-        rgba(201,168,76,0.25) 92%,
+        rgba(145,65,14,0.25) 8%,
+        rgba(145,65,14,0.25) 92%,
         transparent 100%
       );
     }
@@ -202,7 +206,7 @@
     .arc-step:hover .arc-step-dot { background: var(--gold); }
 
     .arc-step-num {
-      font-size: 8px; letter-spacing: 0.3em; color: rgba(201,168,76,0.5);
+      font-size: 8px; letter-spacing: 0.3em; color: rgba(145,65,14,0.55);
       font-family: var(--sans); margin-top: 5px;
     }
 
@@ -210,17 +214,17 @@
 
     .arc-step-title {
       font-family: var(--sans); font-size: 11px; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--white); margin-bottom: 6px;
+      text-transform: uppercase; color: var(--text); margin-bottom: 6px;
     }
 
     .arc-step-desc {
       font-family: var(--serif); font-size: 13.5px; line-height: 1.65;
-      color: rgba(200,200,200,0.6);
+      color: rgba(25,25,25,0.6);
     }
 
     .arc-step-link {
       font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(201,168,76,0.45); margin-top: 4px; display: block;
+      color: rgba(145,65,14,0.6); margin-top: 4px; display: block;
       font-family: var(--sans);
     }
 
@@ -228,7 +232,7 @@
     #fan {
       background: var(--black);
       padding: 96px 0 64px;
-      border-top: 1px solid rgba(255,255,255,0.04);
+      border-top: 1px solid rgba(0,0,0,0.06);
       overflow: hidden;
     }
 
@@ -240,7 +244,7 @@
 
     .fan-heading {
       font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 400; line-height: 1.15; color: var(--white);
+      font-weight: 400; line-height: 1.15; color: var(--text);
     }
 
     /* Carousel stage */
@@ -406,20 +410,20 @@
 
     .fan-btn {
       width: 48px; height: 48px; border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.3);
+      border: 1px solid rgba(145,65,14,0.35);
       background: transparent; color: var(--gold);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: all 0.25s ease;
       font-size: 18px;
     }
 
-    .fan-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .fan-btn:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
     .fan-dots { display: flex; gap: 10px; align-items: center; }
 
     .fan-dot {
       width: 6px; height: 6px; border-radius: 50%;
-      background: rgba(255,255,255,0.2); cursor: pointer;
+      background: rgba(0,0,0,0.2); cursor: pointer;
       transition: all 0.3s ease; border: none; padding: 0;
     }
 
@@ -427,24 +431,24 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--black); border-top: 1px solid rgba(255,255,255,0.05);
+      background: #060606; border-top: 1px solid rgba(255,255,255,0.06);
       padding: 48px 48px 40px;
       display: flex; align-items: flex-start; justify-content: space-between;
       flex-wrap: wrap; gap: 32px;
     }
 
     .footer-left {}
-    .footer-logo { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); margin-bottom: 12px; font-style: italic; }
+    .footer-logo { font-family: var(--serif); font-size: 1.5rem; color: var(--gold2); margin-bottom: 12px; font-style: italic; }
     .footer-copy { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); line-height: 1.9; }
-    .footer-copy strong { color: rgba(232,232,232,0.5); display: block; }
+    .footer-copy strong { color: rgba(232,219,200,0.55); display: block; }
 
     .footer-links { display: flex; flex-direction: column; gap: 8px; }
     .footer-links a {
       font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted);
       text-decoration: none; transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-links span { font-size: 9px; color: rgba(201,168,76,0.4); margin-right: 8px; }
+    .footer-links a:hover { color: var(--gold2); }
+    .footer-links span { font-size: 9px; color: rgba(200,86,50,0.55); margin-right: 8px; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -453,7 +457,7 @@
     .reveal-delay-2 { transition-delay: 0.22s; }
     .reveal-delay-3 { transition-delay: 0.36s; }
 
-    .gold-line { display: block; width: 40px; height: 1px; background: var(--gold); margin: 20px 0; opacity: 0.6; }
+    .gold-line { display: block; width: 40px; height: 1px; background: var(--gold); margin: 20px 0; opacity: 0.5; }
 
     @media (max-width: 900px) {
       .arc-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 28px; }
@@ -856,7 +860,7 @@
   <div class="footer-left">
     <div class="footer-logo">Ondas</div>
     <p class="footer-copy">
-      <strong>LexiMus · Universidad de Salamanca</strong>
+      <strong>LexiMus · Universidad de Salamanca · MUSLYME</strong>
       Léxico y ontología de la música en español<br>
       PID2022-139589NB-C33<br>
       Fuente: Revista <em>Ondas</em>, Hemeroteca Nacional de España
