@@ -37,6 +37,20 @@
     .nav-logo  { font-size: 11px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--muted); }
     .nav-sep   { color: var(--gold); opacity: 0.4; }
     .nav-title { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .nav-tabs  { display: flex; align-items: center; gap: 4px; }
+    .nav-tabs a {
+      padding: 7px 13px;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #6b4c1e;
+      text-decoration: none;
+      border-radius: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-tabs a:hover { color: var(--gold); border-bottom-color: var(--gold); background: rgba(145,65,14,0.07); }
+    .nav-tabs a.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+    @media (max-width: 768px) { .nav-tabs { display: none; } }
 
     /* ── HERO ── */
     /* El hero conserva fondo oscuro propio sobre las imágenes */
@@ -475,6 +489,14 @@
     <span class="nav-logo">Ondas · 1925–1935</span>
     <span class="nav-sep">—</span>
     <span class="nav-title">Exposición digital</span>
+  </div>
+  <div class="nav-tabs">
+    <a href="https://leximususal.github.io/MUSLYME/exposicion_ondas_index.html">🏠 Home</a>
+    <a href="https://leximususal.github.io/ondas-exposicion/" class="active">🗺️ Itinerarios</a>
+    <a href="https://leximususal.github.io/MUSLYME/exposicion_ondas_index.html#categories">🗂️ Categorías</a>
+    <a href="https://leximususal.github.io/radio-salamanca-centenario/">📻 Radio Salamanca</a>
+    <a href="https://leximususal.github.io/MUSLYME/estadisticas_ondas.html">📊 Datos</a>
+    <a href="https://leximususal.github.io/MUSLYME/ondas_timeline_iconografia.html">📅 Línea Temporal</a>
   </div>
 </nav>
 
