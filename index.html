@@ -146,6 +146,23 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ── VIDEO SECTION ── */
+    #video-section {
+      background: var(--dark);
+      padding: 96px 48px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .video-inner {
+      max-width: 1000px; margin: 0 auto; text-align: center;
+    }
+    .video-wrap {
+      margin-top: 0;
+      border-radius: 4px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      border: 1px solid rgba(145,65,14,0.15);
+    }
+    .video-wrap video { display: block; width: 100%; }
+
     /* ── ARC SECTION ── */
     #arc {
       background: var(--dark);
@@ -529,6 +546,18 @@
     <div class="hero-down">
       <div class="hero-down-line"></div>
       <span>Descubrir</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VIDEO ══ -->
+<section id="video-section">
+  <div class="video-inner">
+    <div class="video-wrap">
+      <video controls>
+        <source src="itinerario_escucha_ondas_v2.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de vídeo.
+      </video>
     </div>
   </div>
 </section>
