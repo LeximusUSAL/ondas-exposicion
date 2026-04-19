@@ -50,7 +50,31 @@
     }
     .nav-tabs a:hover { color: var(--gold); border-bottom-color: var(--gold); background: rgba(145,65,14,0.07); }
     .nav-tabs a.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
-    @media (max-width: 768px) { .nav-tabs { display: none; } }
+    /* ── HAMBURGER ── */
+    .nav-ham {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-ham span {
+      display: block; width: 22px; height: 2px;
+      background: var(--gold); border-radius: 2px;
+      transition: transform 0.28s, opacity 0.28s;
+    }
+    .nav-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-ham.open span:nth-child(2) { opacity: 0; }
+    .nav-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-ham { display: flex; }
+      .nav-tabs {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: rgba(221,208,184,0.98);
+        border-bottom: 1px solid rgba(145,65,14,0.15);
+        padding: 4px 0 12px;
+      }
+      .nav-tabs.open { display: flex; }
+      .nav-tabs a { padding: 13px 24px; border-bottom: 1px solid rgba(145,65,14,0.07); font-size: 11px; border-radius: 0; }
+    }
 
     /* ── HERO ── */
     /* El hero conserva fondo oscuro propio sobre las imágenes */
@@ -536,6 +560,7 @@
     <a href="https://leximususal.github.io/MUSLYME/estadisticas_ondas.html">Datos</a>
     <a href="https://leximususal.github.io/MUSLYME/ondas_timeline_iconografia.html">Línea Temporal</a>
   </div>
+  <button class="nav-ham" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- ══════════════════════════════════════════
@@ -883,6 +908,14 @@
 </footer>
 
 <script>
+  // Hamburger
+  (function(){
+    var btn=document.querySelector('.nav-ham'), menu=document.querySelector('.nav-tabs');
+    if(!btn||!menu) return;
+    btn.addEventListener('click',function(){ btn.classList.toggle('open'); menu.classList.toggle('open'); });
+    document.addEventListener('click',function(e){ if(!btn.contains(e.target)&&!menu.contains(e.target)){ btn.classList.remove('open'); menu.classList.remove('open'); } });
+  })();
+
   /* ── Carrusel de tarjetas rectas ── */
   const TOTAL = 6;
   let active = 0;
